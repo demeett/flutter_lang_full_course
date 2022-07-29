@@ -1,6 +1,6 @@
 void main(List<String> args) {
   //Burada bir string ataması yapıyor gibi düşünebiliriz. mesela string name='demet' yazıp
-  //bir sonraki satırda name='haydar' olarak değişken ataması yapıp kullanabiliyoruz.
+  //bir sonraki satırda name='haydar' olarak değişken ataması yapıp kullanabiliyoruz.Int
   IUser user = Turk();
   user.sayName();
   user = English();
