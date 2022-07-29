@@ -16,7 +16,6 @@ void main(List<String> args) {
 //Bütün arabalarımı user yapıcam
 //Aşağıda caritemsın içindeki user verilerini users değişkenine atadı.
   final users = carItems.expand((element) => element.users).toList();
-  print(users);
 
   final mercedes = Car(
       model: CarModels.mercedes, name: "md", money: 500, isSecondHand: false);
@@ -31,16 +30,16 @@ void main(List<String> args) {
   print(carItems);
 }
 
+//referansları değiştirmeyi sağlayan yapı returndür .
 void calculateToUser(List<Car> items) {
-  final newItems = items.map((Car e) {
-    if (e.model == CarModels.bmw) {
-      e.model = CarModels.mercedes;
-    }
-    if (e.isSecondHand) {
-      e.isSecondHand = false;
-    }
-    return e;
+  final _items = [...items.toList()];
+  final newItems = _items.map((Car e) {
+    return Car(
+        model: e.model == CarModels.bmw ? CarModels.yamaha : e.model,
+        name: e.name,
+        money: e.money);
   }).toList();
+  print(newItems);
 }
 
 class Car {
@@ -62,11 +61,11 @@ class Car {
 
   @override
   String toString() {
-    return '$name - $money';
+    return '$model-$name - $money';
   }
 }
 
 enum CarModels { bmw, mercedes, audi, yamaha, toyata }
 
-//Referans tiplerde yaşanan sorunlaarın önüne geçmek için parametreyi şeklinde yollarsak yeni bir 
+//Referans tiplerde yaşanan sorunlaarın önüne geçmek için parametreyi şeklinde yollarsak yeni bir
 //liste oluşturmuş olur ve eski listeyi değiştirmez. Referansları aynı yeri işaret etmez.
